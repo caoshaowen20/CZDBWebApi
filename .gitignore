@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CZDBWebApi/cz88_public_v6.czdb
+/CZDBWebApi/cz88_public_v4.czdb
