@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MsgPack;
+using MsgPack.Serialization;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace CZDBHelper.entity
 {
@@ -94,11 +94,26 @@ namespace CZDBHelper.entity
 
         private String unpack(byte[] geoMapData, long columnSelection)
         {
-            long geoPosMixSize = region.First();
+            // 创建一个解包器
+            var unpacker = Unpacker.Create(region);
 
-            String otherData = Encoding.UTF8.GetString(region.Skip(2).ToArray());
+            // 解包第一个对象
+            if (unpacker.Read())
+            {
+                var serializer = SerializationContext.Default.GetSerializer<long>();
+                var geoPosMixSize = serializer.UnpackFrom(unpacker);
+            }
 
-            return otherData;
+            // 解包第二个对象
+            if (unpacker.Read())
+            {
+                var strSerializer = SerializationContext.Default.GetSerializer<string>();
+                var otherData = strSerializer.UnpackFrom(unpacker);
+
+                return otherData;
+            }
+
+            return "";
         }
     }
 }

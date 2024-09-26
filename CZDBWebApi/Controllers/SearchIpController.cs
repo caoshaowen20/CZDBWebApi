@@ -19,19 +19,19 @@ namespace CZDBWebApi.Controllers
         }
 
         [HttpGet()]
-        public string Get([FromQuery]string? ip = null)
+        public string Get([FromQuery] string? ip = null)
         {
             try
             {
                 if (string.IsNullOrEmpty(ip)) return "";
 
-                IPAddress addr = IPAddress.Parse(ip);
+                if (!IPAddress.TryParse(ip, out var addr)) return "";
 
                 if (addr.AddressFamily == AddressFamily.InterNetwork) // IPv4
                 {
                     return dbIpv4.search(ip);
                 }
-                else if (addr.AddressFamily == AddressFamily.InterNetworkV6) 
+                else if (addr.AddressFamily == AddressFamily.InterNetworkV6)
                 {
                     return dbIpv6.search(ip);
                 }

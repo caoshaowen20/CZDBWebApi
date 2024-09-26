@@ -14,4 +14,13 @@
     <ProjectReference Include="..\CZDBHelper\CZDBHelper.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="cz88_public_v4.czdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="cz88_public_v6.czdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
