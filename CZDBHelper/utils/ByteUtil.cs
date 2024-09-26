@@ -22,7 +22,7 @@
             for (int i = 0; i < bytes; i++)
             {
                 //b[offset++] = (sbyte)((v >>> (8 * i)) & 0xFF);
-                b[offset++] = (byte)((v >> (8 * i)) & 0xFF);
+                b[offset++] = (byte)(((long)((ulong)v >> (8 * i))) & 0xFF);
             }
         }
 
