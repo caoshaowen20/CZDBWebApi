@@ -7,7 +7,7 @@ namespace CZDBHelper
     {
         private int offset;
 
-        public Cz88RandomAccessFile(String name, FileMode mode, int offset) : base(name, mode)
+        public Cz88RandomAccessFile(String name, FileMode mode, int offset) : base(name, mode, FileAccess.Read)
         {
             this.offset = offset;
         }
